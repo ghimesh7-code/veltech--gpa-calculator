@@ -17,7 +17,7 @@ body{
     padding:20px;
     width:380px;
     margin:auto;
-    margin-top:30px;
+    margin-top:20px;
     border-radius:15px;
 }
 input,select{
@@ -38,6 +38,9 @@ button{
 <body>
 
 <h1>Veltech GPA & CGPA Calculator</h1>
+
+<!-- College Image -->
+<img src="college.jpg" width="220" style="border-radius:12px; margin-bottom:20px;">
 
 <div class="container">
 
@@ -65,8 +68,7 @@ Subjects:
 
 <script>
 
-/* -------- GPA PART ---------- */
-
+/* GPA PART */
 function createInputs(){
     let n=document.getElementById("subjects").value;
     let div=document.getElementById("inputs");
@@ -108,8 +110,7 @@ function calculate(){
     document.getElementById("result").innerHTML="Your GPA : "+gpa.toFixed(2);
 }
 
-/* -------- CGPA PART ---------- */
-
+/* CGPA PART */
 let semDiv=document.getElementById("semesters");
 for(let i=1;i<=8;i++){
     semDiv.innerHTML += `
@@ -138,3 +139,4 @@ function calculateCGPA(){
 
 </body>
 </html>
+
