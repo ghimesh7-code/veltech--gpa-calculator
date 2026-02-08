@@ -6,17 +6,24 @@
 
 <style>
 body{
+    margin:0;
     font-family: Arial;
     text-align:center;
-    margin:0;
     color:white;
 
-    /* Full background image */
-    background:url("college.jpg") no-repeat center center fixed;
+    /* Full screen background image */
+    background-image:url("./college.jpg");
     background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
 
-/* Glass card */
+h1{
+    background:rgba(0,0,0,0.6);
+    padding:15px;
+}
+
 .container{
     background:rgba(255,255,255,0.9);
     color:black;
@@ -25,11 +32,6 @@ body{
     margin:auto;
     margin-top:40px;
     border-radius:15px;
-}
-
-h1{
-    background:rgba(0,0,0,0.5);
-    padding:15px;
 }
 
 input,select{
