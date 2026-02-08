@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Veltech GPA & CGPA Calculator</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background:linear-gradient(120deg,#00c6ff,#0072ff);
+    color:white;
+}
+.container{
+    background:white;
+    color:black;
+    padding:20px;
+    width:380px;
+    margin:auto;
+    margin-top:30px;
+    border-radius:15px;
+}
+input,select{
+    padding:6px;
+    margin:5px;
+}
+button{
+    padding:8px 15px;
+    margin:10px;
+    background:#0072ff;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Veltech GPA & CGPA Calculator</h1>
+
+<div class="container">
+
+<h2>Semester GPA Calculator</h2>
+
+Subjects:
+<input type="number" id="subjects">
+<button onclick="createInputs()">Create</button>
+
+<div id="inputs"></div>
+
+<button onclick="calculate()">Calculate GPA</button>
+<h3 id="result"></h3>
+
+<hr>
+
+<h2>8 Semester CGPA Calculator</h2>
+
+<div id="semesters"></div>
+
+<button onclick="calculateCGPA()">Calculate CGPA</button>
+<h3 id="cgpaResult"></h3>
+
+</div>
+
+<script>
+
+/* -------- GPA PART ---------- */
+
+function createInputs(){
+    let n=document.getElementById("subjects").value;
+    let div=document.getElementById("inputs");
+    div.innerHTML="";
+
+    for(let i=0;i<n;i++){
+        div.innerHTML+=`
+        <h4>Subject ${i+1}</h4>
+        Credit:
+        <input type="number" class="credit">
+        Grade:
+        <select class="grade">
+            <option value="10">O</option>
+            <option value="9">A+</option>
+            <option value="8">A</option>
+            <option value="7">B+</option>
+            <option value="6">B</option>
+            <option value="5">C</option>
+            <option value="0">U</option>
+        </select><br>`;
+    }
+}
+
+function calculate(){
+    let credits=document.getElementsByClassName("credit");
+    let grades=document.getElementsByClassName("grade");
+
+    let total=0;
+    let totalCredits=0;
+
+    for(let i=0;i<credits.length;i++){
+        let c=parseFloat(credits[i].value);
+        let g=parseFloat(grades[i].value);
+        total+=c*g;
+        totalCredits+=c;
+    }
+
+    let gpa=total/totalCredits;
+    document.getElementById("result").innerHTML="Your GPA : "+gpa.toFixed(2);
+}
+
+/* -------- CGPA PART ---------- */
+
+let semDiv=document.getElementById("semesters");
+for(let i=1;i<=8;i++){
+    semDiv.innerHTML += `
+    Semester ${i} GPA:
+    <input type="number" step="0.01" class="semgpa"><br>`;
+}
+
+function calculateCGPA(){
+    let gpas=document.getElementsByClassName("semgpa");
+    let total=0;
+    let count=0;
+
+    for(let i=0;i<gpas.length;i++){
+        let val=parseFloat(gpas[i].value);
+        if(!isNaN(val)){
+            total+=val;
+            count++;
+        }
+    }
+
+    let cgpa=total/count;
+    document.getElementById("cgpaResult").innerHTML="Your CGPA : "+cgpa.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
